@@ -9,4 +9,7 @@ COPY entrypoint.sh /
 RUN chmod 0755 entrypoint.sh
 WORKDIR /
 RUN crontab ddns-cron
+COPY healthcheck.sh /
+RUN touch godaddy-dyndns-logs
+HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=1 CMD ["bash", "healthcheck.sh" ]
 ENTRYPOINT [ "/entrypoint.sh" ]
