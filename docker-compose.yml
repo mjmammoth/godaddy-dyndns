@@ -1,0 +1,10 @@
+---
+version: "2.1"
+services:
+  godaddy-dyndns:
+#    image: mjmammoth/godaddy-dyndns:latest
+    image: gdns
+    container_name: godaddy-dyndns
+    env_file:
+      - .env
+    restart: unless-stopped
